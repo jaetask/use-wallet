@@ -240,7 +240,10 @@ function UseWalletProvider({
           account && setLastActiveAccount(account)
           web3ReactConnector.getProvider().then((provider) => {
             provider.on('accountsChanged', (accounts: string[]) => {
+              // we are changing accounts!
+              setStatus('connecting')
               setLastActiveAccount(accounts[0])
+              setStatus('connected')
             })
           })
         }
